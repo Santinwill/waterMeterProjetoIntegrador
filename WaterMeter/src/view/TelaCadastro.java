@@ -188,9 +188,6 @@ public class TelaCadastro extends JFrame {
 				u.setLogin(textUsuarioCadastro.getText());
 				u.setPassword(textSenhaCadastro.getText());
 				dao.create(u);
-				
-//				JOptionPane.showMessageDialog(null, "Nome: " + textNome.getText()
-//				+ "CPF: " + textCpf.getText());	
 			}
 		});
 		btnNewButton.setBounds(179, 480, 89, 23);
