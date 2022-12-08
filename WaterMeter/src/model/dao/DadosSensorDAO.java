@@ -15,30 +15,7 @@ import connection.ConnectionFactory;
 import model.bean.DadosSensor;
 
 public class DadosSensorDAO {
-	public DadosSensor getDadosSensor(String vldata) {
-		Connection con = ConnectionFactory.getConnection();
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		
-		try {
-			stmt = con.prepareStatement("SELECT litros FROM dadossensor WHERE "
-					+ "vldate = ?");
-			stmt.setString(1, vldata);
-			rs = stmt.executeQuery();
-			
-			DadosSensor dadossensor = new DadosSensor();
-			rs.first();
-			dadossensor.setVldate(vldata);
-			dadossensor.setLitros(rs.getString("litros"));
-			return dadossensor;
-		}catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Erro: " + e);
-			return null;
-		}finally {
-			ConnectionFactory.closeConnection(con, stmt, rs);
-		}
-	}
-	/*public List<DadosSensor>read(){
+	public List<DadosSensor>read(){
 		Connection con = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -46,12 +23,14 @@ public class DadosSensorDAO {
 		List<DadosSensor> DadosSensor1 = new ArrayList<>();
 		
 		try {
-			stmt = con.prepareStatement("SELECT litros FROM dadossensor WHERE "
-					+ "vldate = ?");
+			stmt = con.prepareStatement("SELECT * FROM dadossensor"); //WHERE vldata = '2022-11-27'
 			rs = stmt.executeQuery();
 			
 			while (rs.next()) {
 				DadosSensor dadossensor = new DadosSensor();
+				/*dadossensor.setId_sensor(rs.getInt("id_sensor"));
+				dadossensor.setVldate(rs.getString("vldata"));
+				dadossensor.setHora(rs.getString("hora"));*/
 				dadossensor.setLitros(rs.getFloat("litros"));
 				DadosSensor1.add(dadossensor);
 				}
@@ -62,5 +41,5 @@ public class DadosSensorDAO {
 			ConnectionFactory.closeConnection(con, stmt, rs);
 		}
 		return DadosSensor1;
-	}*/
+	}
 }

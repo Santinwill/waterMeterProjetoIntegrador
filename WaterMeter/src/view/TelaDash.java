@@ -2,17 +2,21 @@ package view;
 
 import java.awt.EventQueue;
 
+import javax.management.modelmbean.ModelMBeanOperationInfo;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.bean.DadosSensor;
+import model.dao.DadosSensorDAO;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaDash extends JFrame {
-
-	private JPanel contentPane;
-	private JTextField textData1;
-	private JTextField textData2;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -37,28 +41,33 @@ public class TelaDash extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 672, 480);
 		setLocationRelativeTo(null);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Data:");
-		lblNewLabel.setBounds(69, 40, 46, 14);
-		contentPane.add(lblNewLabel);
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"vaz\u00E3o"
+			}
+		));
+		table.setBounds(100, 111, 468, 238);
+		getContentPane().add(table);
 		
-		JLabel lblNewLabel_1 = new JLabel("Data:");
-		lblNewLabel_1.setBounds(353, 40, 46, 14);
-		contentPane.add(lblNewLabel_1);
+		readJtable();
+	}
+	
+	public void readJtable() {
+		// 8:45 https://www.youtube.com/watch?v=IWcV-9Lcu64&list=PLWd_VnthxxLcuMX7LluyGXGYNfWNAFvz2&index=4
+		DefaultTableModel modelo = (DefaultTableModel) table.getModel();
+		DadosSensorDAO ddao = new DadosSensorDAO();
 		
-		textData1 = new JTextField();
-		textData1.setBounds(101, 37, 158, 20);
-		contentPane.add(textData1);
-		textData1.setColumns(10);
+		for(DadosSensor d : ddao.read()) {
+			modelo.addRow(new Object[] {
+					d.getId_sensor(),
+			});
+		}
 		
-		textData2 = new JTextField();
-		textData2.setColumns(10);
-		textData2.setBounds(384, 37, 158, 20);
-		contentPane.add(textData2);
+		
 	}
 }
