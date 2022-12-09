@@ -23,14 +23,14 @@ public class DadosSensorDAO {
 		List<DadosSensor> DadosSensor1 = new ArrayList<>();
 		
 		try {
-			stmt = con.prepareStatement("SELECT * FROM dadossensor"); //WHERE vldata = '2022-11-27'
+			stmt = con.prepareStatement("SELECT * FROM dadossensor ORDER BY vldata, hora"); //WHERE vldata = '2022-11-27'
 			rs = stmt.executeQuery();
 			
 			while (rs.next()) {
 				DadosSensor dadossensor = new DadosSensor();
-				/*dadossensor.setId_sensor(rs.getInt("id_sensor"));
+				/*dadossensor.setId_sensor(rs.getInt("id_sensor"));*/
 				dadossensor.setVldate(rs.getString("vldata"));
-				dadossensor.setHora(rs.getString("hora"));*/
+				dadossensor.setHora(rs.getString("hora"));
 				dadossensor.setLitros(rs.getFloat("litros"));
 				DadosSensor1.add(dadossensor);
 				}

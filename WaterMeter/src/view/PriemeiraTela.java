@@ -94,13 +94,6 @@ public class PriemeiraTela {
 				}else {
 					JOptionPane.showMessageDialog(null, "Acesso Negado!", "Erro", JOptionPane.ERROR_MESSAGE);	
 				}
-				
-				
-				/*if(textLogin.getText().equals("usuario") && textPassword.getText().equals("1234")) {
-					JOptionPane.showMessageDialog(null, "Bem vindo!","", JOptionPane.NO_OPTION);
-				}else {
-					JOptionPane.showMessageDialog(null, "Acesso Negado!", "Erro", JOptionPane.ERROR_MESSAGE);
-				}*/
 			}
 		});
 		btnNewButton.setBounds(237, 206, 89, 23);

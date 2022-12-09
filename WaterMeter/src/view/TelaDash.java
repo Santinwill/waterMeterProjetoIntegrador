@@ -48,11 +48,23 @@ public class TelaDash extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"vaz\u00E3o"
+				"data", "hora", "vaz\u00E3o"
 			}
 		));
-		table.setBounds(100, 111, 468, 238);
+		table.setBounds(23, 38, 608, 381);
 		getContentPane().add(table);
+		
+		JLabel lblNewLabel = new JLabel("DATA");
+		lblNewLabel.setBounds(23, 13, 46, 14);
+		getContentPane().add(lblNewLabel);
+		
+		JLabel lblHora = new JLabel("HORA");
+		lblHora.setBounds(230, 13, 46, 14);
+		getContentPane().add(lblHora);
+		
+		JLabel lblLitrosHora = new JLabel("LITROS / HORA");
+		lblLitrosHora.setBounds(429, 13, 84, 14);
+		getContentPane().add(lblLitrosHora);
 		
 		readJtable();
 	}
@@ -64,7 +76,9 @@ public class TelaDash extends JFrame {
 		
 		for(DadosSensor d : ddao.read()) {
 			modelo.addRow(new Object[] {
-					d.getId_sensor(),
+					d.getVldata(),
+					d.getHora(),
+					d.getLitros(),
 			});
 		}
 		
